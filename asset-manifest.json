@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/PTC-React-Login/static/css/main.394a38bb.css",
-    "main.js": "/PTC-React-Login/static/js/main.755fcd4f.js",
+    "main.js": "/PTC-React-Login/static/js/main.a239a9f6.js",
     "index.html": "/PTC-React-Login/index.html",
     "main.394a38bb.css.map": "/PTC-React-Login/static/css/main.394a38bb.css.map",
-    "main.755fcd4f.js.map": "/PTC-React-Login/static/js/main.755fcd4f.js.map"
+    "main.a239a9f6.js.map": "/PTC-React-Login/static/js/main.a239a9f6.js.map"
   },
   "entrypoints": [
     "static/css/main.394a38bb.css",
-    "static/js/main.755fcd4f.js"
+    "static/js/main.a239a9f6.js"
   ]
 }
