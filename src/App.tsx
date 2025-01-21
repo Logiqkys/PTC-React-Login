@@ -5,7 +5,7 @@ import EditorPage from "./views/EditorPage";
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename="/PTC-React-Login">
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/viewer" element={<ViewerPage />} />
