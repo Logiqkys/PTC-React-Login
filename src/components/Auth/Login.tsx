@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // State for error messages
-  const [successMessage, setSuccessMessage] = useState(""); // State for success messages
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [role, setRole] = useState<string>("viewer"); // Role state
+  const [errorMessage, setErrorMessage] = useState(""); // Error message state
+  const navigate = useNavigate();
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     const parent = e.target.parentNode as HTMLElement;
@@ -29,10 +29,9 @@ const Login: React.FC = () => {
     return regex.test(password);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
-    setSuccessMessage("");
 
     if (!validatePassword(password)) {
       setErrorMessage(
@@ -41,35 +40,11 @@ const Login: React.FC = () => {
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setSuccessMessage("Login successful!");
-        console.log("User details:", data.user);
-
-        // Redirect based on role
-        if (data.user.role === "viewer") {
-          navigate("/viewer"); // Redirect to ViewerPage
-        } else if (data.user.role === "editor") {
-          navigate("/editor"); // Redirect to EditorPage
-        }
-      } else {
-        setErrorMessage(
-          data.message || "Login failed. Please check your credentials."
-        );
-      }
-    } catch (error) {
-      console.error("Error logging in:", error);
-      setErrorMessage("An error occurred. Please try again later.");
+    // Redirect based on selected role
+    if (role === "viewer") {
+      navigate("/viewer");
+    } else if (role === "editor") {
+      navigate("/editor");
     }
   };
 
@@ -132,11 +107,29 @@ const Login: React.FC = () => {
                   />
                 </div>
               </div>
+              <div className="role-selector">
+                <label>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="viewer"
+                    checked={role === "viewer"}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                  Viewer
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="editor"
+                    checked={role === "editor"}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                  Editor
+                </label>
+              </div>
               {errorMessage && <p className="error-message">{errorMessage}</p>}
-              {successMessage && (
-                <p className="success-message">{successMessage}</p>
-              )}
-              <a href="#">Register a new account</a>
               <input type="submit" className="btn" value="Login" />
             </div>
           </form>
