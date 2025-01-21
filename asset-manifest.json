@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/PTC-React-Login/static/css/main.394a38bb.css",
+    "main.js": "/PTC-React-Login/static/js/main.f91ab5b0.js",
+    "index.html": "/PTC-React-Login/index.html",
+    "main.394a38bb.css.map": "/PTC-React-Login/static/css/main.394a38bb.css.map",
+    "main.f91ab5b0.js.map": "/PTC-React-Login/static/js/main.f91ab5b0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.394a38bb.css",
+    "static/js/main.f91ab5b0.js"
+  ]
+}
