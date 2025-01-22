@@ -25,7 +25,7 @@ const Login: React.FC = () => {
 
   const validatePassword = (password: string): boolean => {
     const regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{8,}$/;
     return regex.test(password);
   };
 
@@ -83,8 +83,6 @@ const Login: React.FC = () => {
                     onChange={(e) => setUsername(e.target.value)}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    pattern="^[a-zA-Z][a-zA-Z0-9_]{4,20}$"
-                    required
                     autoComplete="username"
                   />
                 </div>
@@ -129,7 +127,9 @@ const Login: React.FC = () => {
                   Editor
                 </label>
               </div>
-              {errorMessage && <p className="error-message">{errorMessage}</p>}
+              {errorMessage && (
+                <p className="error-message error-highlight">{errorMessage}</p>
+              )}
               <input type="submit" className="btn" value="Login" />
             </div>
           </form>
